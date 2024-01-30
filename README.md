@@ -1,81 +1,49 @@
-# Turborepo starter
+# Turborepo configured
 
-This is an official starter Turborepo.
+This is an unofficial starter Turborepo, configured for usage with Nest.JS, Vite and etc.
 
-## Using this example
+## How to use this starter pack?
 
-Run the following command:
+Clone this repository or just take required configs!
 
-```sh
-npx create-turbo@latest
-```
+## Which extra configurations this project has?
 
-## What's inside?
+### Apps
 
-This Turborepo includes the following packages/apps:
+- `vite-project`: a Vite app
+- `nest-project`: a Nest projetc
+- `web`: a [Next.js](https://nextjs.org/) app (just from scratch)
 
-### Apps and Packages
+### Packages
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
+- `@repo/ui`: a stub React component library
 - `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
 - `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+- `@repo/shared`: a library to use between BE (Nest) and FE (Next mostly!)
+- `@repo/shared-vite`: a library for Vite, because of specific build process in Vite
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+## Configuration
 
-### Utilities
+### Correct work with Vercel CD processes
 
-This Turborepo has some additional tools already setup for you:
+Usually I had problems, when shared libraries had incorrect cache on Vercel remote. So, e.g. build of `web` crashes because of insufficient lib builds
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+Now caches are configured pretty well, they can be cached (with outputs!) and Vercel CD works perfectly
 
-### Build
+### Caching of Vite, Nest, etc. applications
 
-To build all apps and packages, run the following command:
+With support of caching for libraries, support for caching other builds was provided.
 
-```
-cd my-turborepo
-pnpm build
-```
+So, now you can run `pnpm build` and everything can be cached!
 
-### Develop
+## Usage
 
-To develop all apps and packages, run the following command:
+### Shared (buildable libraries) with default CJS format
 
-```
-cd my-turborepo
-pnpm dev
-```
+You can check example in [packages/shared](./packages/shared/). It's only requires some changes in `package.json` and providing correct `turbo.json`
 
-### Remote Caching
+### Shared (buildable libraries) with both CJS/ESM formats
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+You can check example in [packages/shared-vite](./packages/shared-vite/). It's only requires some changes in `package.json` and providing correct `turbo.json`.
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+Result is achieved with usage of [tsup](https://github.com/egoist/tsup) lib.
