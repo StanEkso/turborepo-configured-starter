@@ -1,5 +1,5 @@
 {
-  "name": "@repo/shared",
+  "name": "@repo/shared-vite",
   "version": "0.0.0",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -7,12 +7,13 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint \"**/*.ts*\"",
-    "build": "tsc --build --force tsconfig.json"
+    "build": "tsup"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "eslint": "8.47.0",
+    "tsup": "8.0.1",
     "typescript": "5.1.6"
   },
   "dependencies": {
