@@ -18,7 +18,7 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
-      <p>From shared library: {sharedConstant}</p>
+      <p>{sharedConstant}</p>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}

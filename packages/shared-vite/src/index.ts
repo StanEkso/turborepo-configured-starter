@@ -1,1 +1,1 @@
-export const sharedConstant = "Hello world!";
+export const sharedConstant = "Hello world from @repo/shared-vite!";
